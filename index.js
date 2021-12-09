@@ -29,21 +29,33 @@ apiServer.get('/somma', (request,response) =>{
     console.log ("somma request", request.query);
     response.send("risultato= " + (request.query.a -(-request.query.b)));
 });
+// apiServer.get('/student', (request,response) =>{
+//      console.log ("student id", request.query);
+// //leggere il file
+// fs.readFile("studenti.json", (err, data)=> {
+//     if(err) {
+//         console.log("error" + err);
+//     } else {
+//         var students= JSON.parse(data);
+//         //for (i=0;i<students.length;i++){
+//         //console.log("students"+i+":"+students[i].name);
+//         //console.log("students"+i+":"+students[i].surname);
+//         //console.log("students"+i+":"+students[i].id);
+//         response.send(
+//         students.find(x => x.id === request.query.id));
+//         }
+// });
 apiServer.get('/student', (request,response) =>{
-     console.log ("student id", request.query);
-//leggere il file
-fs.readFile("studenti.json", (err, data)=> {
+    console.log ("student id", request.query);
+    fs.writeFile("studenti.json", (err,data) => {
     if(err) {
         console.log("error" + err);
     } else {
-        var students= JSOM.parse(data);
-        //for (i=0;i<students.length;i++){
-        //console.log("students"+i+":"+students[i].name);
-        //console.log("students"+i+":"+students[i].surname);
-        //console.log("students"+i+":"+students[i].id);
+        function PUSH(){
+        var students= JSON.parse(data);
         response.send(
-        students.find(x => x.id === request.query.id));
+        students.Push('response.query.name', 'request.query.surname', 'request.query.id'));
         }
+}
 });
-
 });
