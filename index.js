@@ -37,7 +37,13 @@ fs.readFile("studenti.json", (err, data)=> {
         console.log("error" + err);
     } else {
         var students= JSOM.parse(data);
-        console.log("students: "+ students[0].surname);    
-    }
+        //for (i=0;i<students.length;i++){
+        //console.log("students"+i+":"+students[i].name);
+        //console.log("students"+i+":"+students[i].surname);
+        //console.log("students"+i+":"+students[i].id);
+        response.send(
+        students.find(x => x.id === request.query.id));
+        }
 });
+
 });
