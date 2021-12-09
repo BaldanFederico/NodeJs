@@ -1,7 +1,7 @@
 const { request, response } = require("express");
 var express= require("express");
 var apiServer= express();
-
+var fs=  require("fs");
 
 
 console.log("funzia");
@@ -28,4 +28,16 @@ response.send("Ciao client sono in home"); //risposta al server
 apiServer.get('/somma', (request,response) =>{
     console.log ("somma request", request.query);
     response.send("risultato= " + (request.query.a -(-request.query.b)));
+});
+apiServer.get('/student', (request,response) =>{
+     console.log ("student id", request.query);
+//leggere il file
+fs.readFile("studenti.json", (err, data)=> {
+    if(err) {
+        console.log("error" + err);
+    } else {
+        var students= JSOM.parse(data);
+        console.log("students: "+ students[0].surname);    
+    }
+});
 });
